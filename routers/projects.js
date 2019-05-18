@@ -6,7 +6,8 @@ const db = require('../data/helpers/projectModel');
 router.get('/', async (req, res) => {
   try {
     const data = await db.get();
-    res.send(data);
+
+    res.json(data);
   } catch(err) {
     res.status(500).send(err);
   }
@@ -22,7 +23,6 @@ router.get('/:id', async (req, res) => {
     } else {
       res.json(data);
     }
-
   } catch(err) {
     res.status(500).send(err);
   }
@@ -59,7 +59,7 @@ router.delete('/:id', async (req, res) => {
   try {
     const projectId = req.params.id;
     const deletedData = await db.remove(projectId);
-    
+
     res.json(deletedData);
   } catch(err) {
     res.status(500).send(err);
