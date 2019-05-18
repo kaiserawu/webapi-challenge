@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Routing, used to run request handlers based on the URL it's connected to, and middleware, functions that take the req and res objects and do stuff to them and/or call the next middleware in the line.
+
 - [ ] Describe Middleware?
+
+Middleware is a set of functions that are run on the request and response objects in sequence and each might modify the request or response, or just do something on the side, then send the data to the next piece of middleware or return the response or just stop.
 
 - [ ] Describe a Resource?
 
+A resource is a set of data that gets obtained or modified by the server, being manipulated and send to the client as requested.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+Status codes are used to tell the client what situation has come up, and usually a 200 code means that everything went fine.
+
 - [ ] How can we partition our application into sub-applications?
+
+Routers can be used in express for that purpose to split the application into subfiles, each with their own set of endpoints per major route.
 
 ## Project Setup
 
