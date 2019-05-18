@@ -39,4 +39,31 @@ router.post('/', async (req, res) => {
   }
 })
 
+router.put('/:id', async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const putData = req.body;
+    const updatedData = await db.update(projectId, putData);
+    
+    if (updatedData === null) {
+      res.status(404).json({ message: 'Error, that ID was not found.' });
+    } else {
+      res.json(updatedData);
+    }
+  } catch(err) {
+    res.status(500).send(err);
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const deletedData = await db.remove(projectId);
+    
+    res.json(deletedData);
+  } catch(err) {
+    res.status(500).send(err);
+  }
+})
+
 module.exports = router;
