@@ -59,4 +59,15 @@ router.put('/:id', async (req, res) => {
   }
 })
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const actionId = req.params.id;
+    const deletedData = await db.remove(actionId);
+
+    res.json(deletedData);
+  } catch(err) {
+    res.status(500).send(err);
+  }
+})
+
 module.exports = router;
