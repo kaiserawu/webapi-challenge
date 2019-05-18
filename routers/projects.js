@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     const postData = req.body;
     const returnedData = await db.insert(postData);
 
-    res.status(201).send(returnedData);
+    res.status(201).json(returnedData);
   } catch(err) {
     res.status(500).send(err);
   }

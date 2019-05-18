@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
     if (err instanceof TypeError) {
       res.status(404).json({ message: 'Error, that ID was not found.' });
     } else {
-      res.status(500).json(err);
+      res.status(500).send(err);
     }
   }
 })
@@ -38,7 +38,23 @@ router.post('/', async (req, res) => {
     if (err.errno === 19) {
       res.status(404).json({ message: 'Error, that project ID was not found.' });
     } else {
-      res.status(500).json(err);
+      res.status(500).send(err);
+    }
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  try {
+    const actionId = req.params.id;
+    const putData = req.body;
+    const updatedData = await db.update(actionId, putData);
+
+    res.json(updatedData);
+  } catch(err) {
+    if (err.errno === 19) {
+      res.status(404).json({ message: 'Error, that project ID was not found.' });
+    } else {
+      res.status(500).send(err);
     }
   }
 })
